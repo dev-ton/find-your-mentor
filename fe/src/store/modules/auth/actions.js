@@ -10,14 +10,14 @@ export default {
     async signup(context, payload) {
         return context.dispatch('auth', {
             ...payload,
-            mode: 'signup '
+            mode: 'signup'
         })
     },
     async auth(context, payload) {
         const mode = payload.mode
-        let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA8_vWARuuM_L_Sk4M2PLIuCSdh-wiAzDU'
+        let url = 'https://find-your-mentor.herokuapp.com/user/login'
             if (mode === 'signup') {
-                url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyA8_vWARuuM_L_Sk4M2PLIuCSdh-wiAzDU'
+                url = 'https://find-your-mentor.herokuapp.com/user/signup'
             }
         const response = await fetch(url, {
             method: 'POST',
@@ -45,7 +45,7 @@ export default {
         localStorage.setItem('tokenExpiration', expirationDate)
 
         timer = setTimeout(function() {
-            context.dispatch('autoL ogout')
+            context.dispatch('autoLogout')
         }, expiresIn)
 
         context.commit('setUser', {
