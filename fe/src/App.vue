@@ -1,33 +1,34 @@
 <template>
-    <the-header></the-header>
-    <router-view v-slot="slotProps">
-      <transition name="route" mode="out-in">
-        <component :is="slotProps.Component"></component>
-      </transition>
-    </router-view>
+  <the-header></the-header>
+  <router-view v-slot="slotProps">
+    <transition name="route" mode="out-in">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
 </template>
 
 <script>
-import TheHeader from './components/layout/TheHeader'
+import TheHeader from './components/layout/TheHeader.vue';
+
 export default {
-    components: {
-        TheHeader
-    },
-    created(){
-       this.$store.dispatch('tryLogin')
-    },
-    computed: {
-      didAutoLogout() {
-          return this.$store.getters.didAutoLogout
-      }
-    },
-    watch: {
-      didAutoLogout(curValue, oldValue) {
-         if (curValue && curValue !== oldValue) {
-           this.$router.replace('/mentors')
-         }
+  components: {
+    TheHeader
+  },
+  computed: {
+    didAutoLogout() {
+      return this.$store.getters.didAutoLogout;
+    }
+  },
+  created() {
+    this.$store.dispatch('tryLogin');
+  },
+  watch: {
+    didAutoLogout(curValue, oldValue) {
+      if (curValue && curValue !== oldValue) {
+        this.$router.replace('/mentors');
       }
     }
+  }
 }
 </script>
 
@@ -47,28 +48,26 @@ body {
 }
 
 .route-enter-from {
-  opacity:0;
-  transform:translateY(-30px)
+  opacity: 0;
+  transform: translateY(-30px);
 }
 
 .route-leave-to {
-  opacity:0;
-  transform:translateY(30px)
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 .route-enter-active {
-  transition: all ease-out .3s;
+  transition: all 0.3s ease-out;
 }
 
 .route-leave-active {
-  transition: all ease-in .3s;
+  transition: all 0.3s ease-in;
 }
 
 .route-enter-to,
 .route-leave-from {
   opacity: 1;
-  transform:translateY(0)
+  transform: translateY(0);
 }
-
-
 </style>

@@ -1,34 +1,40 @@
 <template>
-    <header>
-        <nav>
-            <h1><router-link to="/">Find a Mentor</router-link></h1>
-            <ul>
-                <li><router-link to="/mentors">Mentors</router-link></li>
-                <li v-if="isLoggedIn"><router-link to="/requests">Requests</router-link></li>
-                <li v-else>
-                  <router-link to="/auth">Login</router-link>
-                </li>
-                <li v-if="isLoggedIn" @click="logout">
-                  <base-button>Logout</base-button>
-                </li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <h1>
+        <router-link to="/">Find a mentor</router-link>
+      </h1>
+      <ul>
+        <li>
+          <router-link to="/mentors">All mentors</router-link>
+        </li>
+        <li v-if="isLoggedIn">
+          <router-link to="/requests">Requests</router-link>
+        </li>
+        <li v-else>
+          <router-link to="/auth">Login</router-link>
+        </li>
+        <li v-if="isLoggedIn">
+          <base-button @click="logout">Logout</base-button>
+        </li>
+      </ul>
+    </nav>
+  </header>
 </template>
 
 <script>
 export default {
   computed: {
     isLoggedIn() {
-      return this.$store.getters.isAuthenticated
+      return this.$store.getters.isAuthenticated;
     }
   },
   methods: {
     logout() {
-      this.$store.dispatch('logout')
-      this.$router.replace('/mentors')
+      this.$store.dispatch('logout');
+      this.$router.replace('/mentors');
     }
-  },
+  }
 }
 </script>
 
