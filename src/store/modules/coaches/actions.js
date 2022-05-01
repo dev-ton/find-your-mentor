@@ -12,7 +12,7 @@ export default {
     const token = context.rootGetters.token;
 
     const response = await fetch(
-      `https://vue-http-demo-85e9e.firebaseio.com/coaches/${userId}.json?auth=` +
+      `https://vue-http-demo-43e7a-default-rtdb.europe-west1.firebasedatabase.app/mentors/${userId}.json?auth=` +
         token,
       {
         method: 'PUT',

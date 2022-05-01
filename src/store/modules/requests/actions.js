@@ -5,7 +5,7 @@ export default {
       message: payload.message
     };
     const response = await fetch(
-      `https://vue-http-demo-85e9e.firebaseio.com/requests/${payload.coachId}.json`,
+      `https://vue-http-demo-43e7a-default-rtdb.europe-west1.firebasedatabase.app/requests/${payload.coachId}.json`,
       {
         method: 'POST',
         body: JSON.stringify(newRequest)
